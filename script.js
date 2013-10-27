@@ -4,13 +4,15 @@ jQuery(function($) {
     $("#result").append(box);
   };
   
+  var show_colors = function(colors) {
+    $("#result").empty();
+    colors.map(function(color) { append_box_for_color(color); });
+  };
+  
   $(document).ready(function() {
     $("#button").click(function() {
       var origin = $("#input").val();
-      var colors = Hextractor.hextract(origin);
-      $(colors).each(function() {
-        append_box_for_color(this);
-      });
+      show_colors(Hextractor.hextract(origin));
     });
     
     var pointer = $("#pointer");
