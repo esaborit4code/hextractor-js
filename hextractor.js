@@ -13,21 +13,11 @@ jQuery(function($) {
     return [first_match].concat(rest_of_matches);      
   };
   
-  var remove_duplicated_colors = function(matches) {
-    return matches.filter(function(color, index) {
-      return matches.indexOf(color) == index;
-    });
-  };
-  
-  var order_matches = function(matches) {
-    return matches.sort();
-  };
-  
   var hextract = function(string) {
     var matches = get_all_matches(string, HEX_COLOR_REGEXP);
     var lower_case_matches = matches.map(function(color) { return color.toLowerCase(); })
-    var unique_matches = remove_duplicated_colors(matches);
-    return ordered_matches = order_matches(unique_matches);
+    var unique_matches = matches.uniq();
+    return ordered_matches = unique_matches.sort();
   };
   
   var append_box_for_color = function(color) {
